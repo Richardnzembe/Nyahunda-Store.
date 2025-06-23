@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyahunda Store - Premium Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #25D366;
+            --accent: #f39c12;
+            --light: #f8f9fa;
+            --dark: #1a2530;
+            --success: #27ae60;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --whatsapp: #25D366;
+            --whatsapp-dark: #128C7E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(8px);
+            transform: translateY(0);
+            transition: transform 0.5s ease;
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: var(--secondary);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        .logo-text {
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .logo-text span::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.8rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            color: var(--primary);
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(120deg, #2c3e50 0%, #4a6491 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+            opacity: 0.15;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.3s;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.92;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 0 15px;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.7s;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--secondary);
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .section-title.animate h2 {
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        
+        .section-title p {
+            color: #555;
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.2rem;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .section-title.animate p {
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            transform: translateY(40px);
+            opacity: 0;
+        }
+        
+        .category-card.animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .category-icon {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        .category-icon i {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .category-content {
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .category-content p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .category-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1.05rem;
+        }
+        
+        .category-link:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+        }
+        
+        /* WhatsApp Features Section */
+        .whatsapp-features {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            top: 0;
+            text-align: center;
+            padding: 40px 30px;
+            border-top: 5px solid var(--whatsapp);
+            transform: translateY(40px);
+            opacity: 0;
+        }
+        
+        .feature-card.animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px) rotate(-1deg);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: var(--whatsapp);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(37, 211, 102, 0.2);
+        }
+        
+        .feature-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .feature-content p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        
+        .feature-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1.05rem;
+        }
+        
+        .feature-link:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+        }
+        
+        /* WhatsApp CTA Section */
+        .whatsapp-cta {
+            padding: 120px 0;
+            background: linear-gradient(rgba(26, 40, 54, 0.95), rgba(26, 40, 54, 0.95)), url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgzNywgMjExLCAxMDIsIDAuMDcpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCBmaWxsPSJ1cmwoI3BhdHRlcm4pIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PC9zdmc+');
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(37, 211, 102, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .whatsapp-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .whatsapp-cta h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .whatsapp-cta.animate h2 {
+            animation: fadeInUp 0.8s ease forwards 0.2s;
+        }
+        
+        .whatsapp-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .whatsapp-cta.animate p {
+            animation: fadeInUp 0.8s ease forwards 0.4s;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-buttons a {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .whatsapp-cta.animate .cta-buttons a {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .whatsapp-cta.animate .cta-buttons a:nth-child(1) {
+            animation-delay: 0.6s;
+        }
+        
+        .whatsapp-cta.animate .cta-buttons a:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: var(--whatsapp);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+            text-decoration: none;
+            transition: var(--transition);
+            z-index: 999;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(8px);
+        }
+        
+        .footer-links a i {
+            margin-right: 12px;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .whatsapp-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .whatsapp-link {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-link:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .whatsapp-link i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-right: 15px;
+        }
+        
+        .whatsapp-link span {
+            font-weight: 500;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 1rem;
+            color: #aaa;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 25px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.15rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 15px auto;
+                width: 80%;
+                max-width: 300px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .whatsapp-cta h2 {
+                font-size: 2.2rem;
+            }
+            
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <div class="logo-icon">NS</div>
+                    <div class="logo-text">Nya<span>hunda</span></div>
+                </a>
+                <button class="mobile-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#whatsapp">WhatsApp</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Marketplace on WhatsApp</h1>
+                <p>Connect with Nyahunda Store through WhatsApp for exclusive deals on clothing, kitchenware, electronics, and more. Simple, secure, and satisfying transactions.</p>
+                <div class="hero-btns">
+                    <a href="#categories" class="btn">Browse Categories</a>
+                    <a href="#whatsapp" class="btn btn-outline">Join WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Product Categories</h2>
+                <p>Explore our premium selection of items available through WhatsApp</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon" style="background: linear-gradient(45deg, #3498db, #9b59b6);">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Clothing & Apparel</h3>
+                        <p>Premium clothing for all ages and occasions</p>
+                        <a href="#" class="category-link">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background: linear-gradient(45deg, #e74c3c, #f39c12);">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Kitchen Essentials</h3>
+                        <p>Complete your kitchen with premium cookware</p>
+                        <a href="#" class="category-link">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background: linear-gradient(45deg, #2ecc71, #27ae60);">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Electronics</h3>
+                        <p>Latest TVs, audio systems, and smart devices</p>
+                        <a href="#" class="category-link">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background: linear-gradient(45deg, #9b59b6, #34495e);">
+                        <i class="fas fa-chair"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Home Furniture</h3>
+                        <p>Stylish furniture to transform your space</p>
+                        <a href="#" class="category-link">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background: linear-gradient(45deg, #1abc9c, #16a085);">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Mobile Devices</h3>
+                        <p>Latest smartphones and accessories</p>
+                        <a href="#" class="category-link">Shop Now</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon" style="background: linear-gradient(45deg, #d35400, #e67e22);">
+                        <i class="fas fa-watch"></i>
+                    </div>
+                    <div class="category-content">
+                        <h3>Accessories</h3>
+                        <p>Watches, jewelry, and premium accessories</p>
+                        <a href="#" class="category-link">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- WhatsApp Features Section -->
+    <section id="whatsapp" class="whatsapp-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Connect on WhatsApp</h2>
+                <p>Join our WhatsApp community for exclusive updates, deals, and direct support</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Direct Support</h3>
+                        <p>Chat directly with our agents for personalized assistance with buying or selling items.</p>
+                        <a href="#" class="feature-link">Chat Now</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Exclusive Group</h3>
+                        <p>Join our premium buyers group for first access to new products and special discounts.</p>
+                        <a href="#" class="feature-link">Join Group</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Updates Channel</h3>
+                        <p>Subscribe to our broadcast channel for daily product updates and flash sales.</p>
+                        <a href="#" class="feature-link">Join Channel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- WhatsApp CTA Section -->
+    <section class="whatsapp-cta">
+        <div class="container">
+            <div class="whatsapp-cta-content">
+                <h2>Join Our WhatsApp Community</h2>
+                <p>Get exclusive access to deals, new arrivals, and personalized support directly through WhatsApp</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn">Join Buyers Group</a>
+                    <a href="#" class="btn btn-outline">Subscribe to Channel</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Nyahunda Store</h3>
+                    <p>Your trusted marketplace for buying and selling quality products directly through WhatsApp.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#categories"><i class="fas fa-chevron-right"></i> Categories</a></li>
+                        <li><a href="#whatsapp"><i class="fas fa-chevron-right"></i> WhatsApp Services</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>WhatsApp Services</h3>
+                    <div class="whatsapp-links">
+                        <a href="#" class="whatsapp-link">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Direct Support Chat</span>
+                        </a>
+                        <a href="#" class="whatsapp-link">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Buyers Community Group</span>
+                        </a>
+                        <a href="#" class="whatsapp-link">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>Product Updates Channel</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Market Street, City Center</a></li>
+                        <li><a href="tel:+15551234567"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
+                        <li><a href="mailto:info@nyahundastore.com"><i class="fas fa-envelope"></i> info@nyahundastore.com</a></li>
+                        <li><a href="https://wa.me/1234567890"><i class="fab fa-whatsapp"></i> WhatsApp Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Nyahunda Store. All Rights Reserved. | Designed for WhatsApp Commerce</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.category-card, .feature-card');
+            const sectionTitles = document.querySelectorAll('.section-title');
+            const whatsappCta = document.querySelector('.whatsapp-cta');
+            
+            // Header hide/show on scroll
+            const header = document.querySelector('header');
+            let lastScrollTop = 0;
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = currentScrollTop;
+            
+            // Animate sections
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate');
+                    element.style.animationDelay = `${index * 0.1}s`;
+                }
+            });
+            
+            sectionTitles.forEach(title => {
+                const elementPosition = title.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    title.classList.add('animate');
+                }
+            });
+            
+            // Animate WhatsApp CTA section
+            if (whatsappCta) {
+                const elementPosition = whatsappCta.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    whatsappCta.classList.add('animate');
+                }
+            }
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.category-card, .feature-card').forEach(el => {
+            el.style.opacity = '0';
+        });
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check in case elements are already in view
+        window.addEventListener('load', animateOnScroll);
+        
+        // Add floating animation to WhatsApp button
+        const whatsappBtn = document.querySelector('.whatsapp-btn');
+        setInterval(() => {
+            whatsappBtn.style.animation = 'float 3s ease-in-out infinite';
+        }, 3000);
+    </script>
+</body>
+</html>
